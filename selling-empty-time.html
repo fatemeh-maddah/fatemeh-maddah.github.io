@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selling empty time — Case study · Fatemeh Maddah</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FBFBFD;color:#1D1D1F;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#5856D6;text-decoration:none}
+a:hover{color:#4644B8}
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid #5856D6;outline-offset:3px;border-radius:8px}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#FBFBFD;color:#1D1D1F;font-family:Inter,system-ui,sans-serif">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(251,251,253,0.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(29,29,31,0.06)">
+  <div ref="{{ progRef }}" aria-hidden="true" style="position:absolute;left:0;top:0;height:2px;width:100%;background:#5856D6;transform-origin:0 50%;transform:scaleX(0)"></div>
+  <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="index.html" style="color:#1D1D1F;font-weight:600;font-size:17px;letter-spacing:-0.01em">Fatemeh Maddah</a>
+    <sc-if value="{{ navDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:32px;font-size:14px">
+        <a href="index.html#work" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">Work</a>
+        <a href="index.html#about" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">About</a>
+        <a href="Fatemeh-Maddah-Resume.pdf" download="Fatemeh-Maddah-Resume.pdf" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">Resume</a>
+        <a href="#contact" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">Contact</a>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Menu" style="appearance:none;border:0;background:rgba(29,29,31,0.06);color:#1D1D1F;font:500 14px Inter,sans-serif;height:44px;padding:0 16px;border-radius:999px;cursor:pointer">{{ menuLabel }}</button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav style="display:flex;flex-direction:column;padding:8px clamp(20px,5vw,40px) 24px;font-size:24px;font-weight:600;letter-spacing:-0.02em">
+      <a href="index.html#work" style="color:#1D1D1F;padding:12px 0;border-bottom:1px solid rgba(29,29,31,0.08)">Work</a>
+      <a href="index.html#about" style="color:#1D1D1F;padding:12px 0;border-bottom:1px solid rgba(29,29,31,0.08)">About</a>
+      <a href="Fatemeh-Maddah-Resume.pdf" download="Fatemeh-Maddah-Resume.pdf" style="color:#1D1D1F;padding:12px 0;border-bottom:1px solid rgba(29,29,31,0.08)">Resume</a>
+      <a href="#contact" onClick="{{ closeMenu }}" style="color:#1D1D1F;padding:12px 0">Contact</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main>
+<section data-screen-label="Case study hero" style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,40px) 48px">
+  <a href="index.html#work" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500">← All work</a>
+  <h1 style="margin:20px 0 0;font-size:clamp(40px,6.4vw,80px);line-height:1.03;letter-spacing:-0.045em;font-weight:600;max-width:920px;text-wrap:balance">Selling empty time</h1>
+  <p style="margin:24px 0 0;max-width:680px;font-size:clamp(18px,2vw,22px);line-height:1.5;color:#6E6E73;text-wrap:pretty">Designing how local businesses publish their free time and manage bookings on a marketplace for the next 48 hours, starting with the question of which businesses it could work for.</p>
+  <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:8px">
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">Information architecture</span>
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">User flows</span>
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">Wireframing</span>
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">Dashboard design</span>
+  </div>
+</section>
+
+<section data-screen-label="Cover and summary" style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px)">
+  <div style="border-radius:clamp(20px,3vw,32px);overflow:hidden;background:#F8E8EA">
+    <img src="assets/cs4/cs4-01-cover.png" alt="Nowslot business panel" style="display:block;width:100%;height:auto">
+  </div>
+  <div style="margin-top:24px;background:#F5F5F7;border-radius:24px;padding:clamp(24px,3vw,32px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:24px 32px">
+    <div><div style="font-size:13px;color:#6E6E73">Role</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">UI/UX Designer (user flows, information architecture, wireframes)</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Team</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Project manager, developers</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Timeline</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">2 weeks</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Platform</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Web , Mobile</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Tools</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Figma</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Outcome</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Sitemap, user flows and wireframes for the business and customer panels; the product is in development.</div></div>
+  </div>
+  <p style="margin:16px 0 0;padding:0 4px;font-size:14px;color:#6E6E73;text-wrap:pretty">Project name and details changed under NDA.</p>
+</section>
+
+<div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,5vw,40px);display:flex;gap:clamp(48px,6vw,80px);align-items:flex-start">
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <aside style="position:sticky;top:104px;flex:0 0 200px">
+      <p style="margin:0 0 16px;font-size:13px;font-weight:500;color:#6E6E73">On this page</p>
+      <nav style="display:flex;flex-direction:column;gap:2px;border-left:1px solid rgba(29,29,31,0.1)">
+        <sc-for list="{{ toc }}" as="t" hint-placeholder-count="8">
+          <a href="{{ t.href }}" style="display:block;margin-left:-1px;padding:6px 0 6px 16px;font-size:14px;line-height:1.4;border-left:1px solid {{ t.bar }};color:{{ t.color }};font-weight:{{ t.weight }};transition:color 200ms" style-hover="color:#1D1D1F">{{ t.label }}</a>
+        </sc-for>
+      </nav>
+    </aside>
+  </sc-if>
+
+  <article style="flex:1 1 auto;min-width:0;font-size:18px;line-height:1.65;color:#1D1D1F">
+
+    <section id="context" data-cs="" style="scroll-margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">Context</h2>
+        <p style="margin:0;text-wrap:pretty">Nowslot shows the free time of local businesses for the next 48 hours. Customers can book a service at short notice. Businesses fill time that would otherwise be lost: an empty chair or an unbooked court earns nothing once the hour has passed.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty">This case study focuses on the business side: how a business sets up its services, publishes its free time, and keeps track of bookings.</p>
+      </div>
+    </section>
+
+    <section id="fit" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">The first question: which businesses fit?</h2>
+        <p style="margin:0;text-wrap:pretty">The client wanted every kind of business on the platform. We looked at different types of services and found that this model doesn't work for all of them. Selling free time only makes sense when a service has a fixed duration and a predictable price, and when the business's capacity is measured in time or seats.</p>
+        
+        <ul style="margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column">
+          
+          
+          
+          
+        </ul>
+      </div>
+    </section>
+
+    <section id="mapping" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">Mapping the product</h2>
+        <p style="margin:0;text-wrap:pretty">The business and the customer have different goals, so I mapped them as two connected panels. The business panel is built around four jobs: see how the day is going, publish free time, manage services, and handle bookings.</p>
+      </div>
+    </section>
+
+    <section id="services" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">Setting up services once</h2>
+        <p style="margin:0;text-wrap:pretty">A business adds its services once: the service type, name, duration, base price, tags, where it's offered (in the business or online), and the days it's available. Services are grouped by type, and a status toggle controls whether each one is visible for booking, so a business can pause a service without deleting it.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <img src="assets/cs4/cs4-03-services.png" alt="Services grouped by type, with duration, price, location, days and status." style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">Services grouped by type, with duration, price, location, days and status.</figcaption>
+      </figure>
+      <figure style="margin:48px 0 0">
+        <img src="assets/cs4/cs4-04-add-service.png" alt="Adding a new service." style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">Adding a new service.</figcaption>
+      </figure>
+    </section>
+
+    <section id="publishing" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">Publishing free time</h2>
+        <p style="margin:0;text-wrap:pretty">The developers defined the logic for how free time and bookings are handled. I designed the screens on top of it.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty">To publish free time, a business picks a date and a time window. Because many businesses have the same gaps every week, the same form can repeat the window daily for the next 30 days, or weekly on chosen days, so they don't have to enter it again and again.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <img src="assets/cs4/cs4-05-add-slot.png" alt="Adding an open time window, with optional repeat." style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">Adding an open time window, with optional repeat.</figcaption>
+      </figure>
+      <div style="max-width:680px">
+        <p style="margin:48px 0 0;text-wrap:pretty">On the bookings calendar, open windows and confirmed bookings sit side by side, each booking showing the customer and the service, so a business sees at a glance which time is still free.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <img src="assets/cs4/cs4-06-calendar.png" alt="Open time and confirmed bookings on the same calendar." style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">Open time and confirmed bookings on the same calendar.</figcaption>
+      </figure>
+    </section>
+
+    <section id="dashboard" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">Seeing the day at a glance</h2>
+        <p style="margin:0;text-wrap:pretty">The dashboard brings together what a business owner checks first: today's revenue and bookings, how much free time is left, their rating, the upcoming bookings for today and tomorrow, and recent reviews. Publishing new free time is one click away from here.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <img src="assets/cs4/cs4-07-dashboard.png" alt="The business dashboard." style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">The business dashboard.</figcaption>
+      </figure>
+    </section>
+
+    <section id="outcome" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">Outcome</h2>
+        <p style="margin:0;text-wrap:pretty">In two weeks, I delivered the sitemap, user flows and wireframes for the business and customer panels. The personas we designed for were based on assumptions, not research. The product is in development, so there is no data from real users yet.</p>
+      </div>
+    </section>
+
+    <section id="learned" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">What I learned</h2>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Define the scope before designing.</strong> The client wanted every kind of business, but asking "who does this model actually work for?" before drawing the first screen saved a lot of design that would have gone unused.</li>
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Saying no, with reasons, is part of the job.</strong> Because I explained my reasons clearly, the team could review them and decide together, instead of going on opinion.</li>
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Designing on top of the developers' logic is faster.</strong> Once the developers defined how free time is handled, I could focus on the experience instead of guessing how the system would work.</li>
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);border-bottom:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Small details save the most time.</strong> Repeating a time window looks like a minor option, but for an owner whose free hours are the same every week, it means not entering them again and again.</li>
+        </ul>
+      </div>
+    </section>
+  </article>
+</div>
+
+<section data-screen-label="Next case study" style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px) clamp(96px,12vw,144px)">
+  <a href="one-timeline-three-roles.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:32px;align-items:center;padding:clamp(24px,4vw,48px);border-radius:32px;background:#E9E7FB;color:#1D1D1F;transition:background 200ms" style-hover="background:#E2DFF8;color:#1D1D1F">
+    <div>
+      <p style="margin:0 0 12px;font-size:14px;font-weight:500;color:#515154">Next case study</p>
+      <h2 style="margin:0;font-size:clamp(32px,4.4vw,52px);line-height:1.08;letter-spacing:-0.035em;font-weight:600">One timeline, three roles</h2>
+      <span style="display:inline-flex;align-items:center;margin-top:24px;height:44px;padding:0 18px;border-radius:999px;background:#FFFFFF;color:#1D1D1F;font-size:14px;font-weight:500">Read case study →</span>
+    </div>
+    <div style="aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:rgba(255,255,255,0.45)">
+      <img src="assets/cs1/cs1-01-cover.png" alt="One timeline, three roles: project timeline screen" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover">
+    </div>
+  </a>
+</section>
+
+<section id="contact" data-screen-label="Contact" style="scroll-margin-top:64px;background:#161617;color:#F5F5F7">
+  <div style="max-width:1160px;margin:0 auto;padding:clamp(96px,12vw,144px) clamp(20px,5vw,40px) 48px">
+    <p style="margin:0 0 16px;font-size:14px;font-weight:500;color:#A1A1A6">Contact</p>
+    <h2 style="margin:0;font-size:clamp(40px,6.4vw,80px);line-height:1.04;letter-spacing:-0.045em;font-weight:600;max-width:820px;text-wrap:balance">Hiring a UI/UX designer? Let's talk.</h2>
+    <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+      <a href="mailto:FatemehSadatMaddah@Gmail.com" style="display:flex;flex-direction:column;gap:8px;padding:28px 32px;border-radius:24px;background:#1F1F21;color:#F5F5F7;transition:background 200ms" style-hover="background:#28282B;color:#F5F5F7">
+        <span style="font-size:14px;color:#A1A1A6">Email</span>
+        <span style="font-size:clamp(18px,2vw,22px);font-weight:500;letter-spacing:-0.01em;word-break:break-word">FatemehSadatMaddah@Gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/fatemeh-maddah/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:8px;padding:28px 32px;border-radius:24px;background:#1F1F21;color:#F5F5F7;transition:background 200ms" style-hover="background:#28282B;color:#F5F5F7">
+        <span style="font-size:14px;color:#A1A1A6">LinkedIn</span>
+        <span style="font-size:clamp(18px,2vw,22px);font-weight:500;letter-spacing:-0.01em;word-break:break-word">linkedin.com/in/fatemeh-maddah ↗</span>
+      </a>
+    </div>
+    <footer style="margin-top:clamp(96px,10vw,128px);padding-top:24px;border-top:1px solid rgba(245,245,247,0.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:#A1A1A6;align-items:center">
+      <span>© 2026 Fatemeh Maddah</span>
+      <a href="#" onClick="{{ toTop }}" style="display:inline-flex;align-items:center;min-height:44px;color:#A1A1A6" style-hover="color:#F5F5F7">Back to top ↑</a>
+    </footer>
+  </div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, active: 'context', menuOpen: false };
+  progRef = React.createRef();
+  sections = [['context','Context'],['fit','Which businesses fit'],['mapping','Mapping the product'],['services','Setting up services'],['publishing','Publishing free time'],['dashboard','The dashboard'],['outcome','Outcome'],['learned','What I learned']];
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onScroll = () => {
+      const d = document.documentElement, max = d.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (this.progRef.current) this.progRef.current.style.transform = 'scaleX(' + p + ')';
+      let cur = this.sections[0][0];
+      for (const [id] of this.sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) cur = id;
+      }
+      if (cur !== this.state.active) this.setState({ active: cur });
+    };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.ro = new ResizeObserver(() => { this.onResize(); this.onScroll(); });
+    this.ro.observe(document.documentElement);
+    this.onResize(); this.onScroll();
+    const start = () => {
+      if (window.innerHeight <= 200) return setTimeout(start, 100);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!window.matchMedia('(hover: hover)').matches) return;
+      this.io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+      }), { threshold: 0.05 });
+      document.querySelectorAll('[data-cs]').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
+        el.style.transition = 'opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1)';
+        this.io.observe(el);
+      });
+    };
+    setTimeout(start, 50);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    this.ro && this.ro.disconnect();
+    this.io && this.io.disconnect();
+  }
+  renderVals() {
+    const isDesktop = this.state.w >= 1100;
+    const isMobile = this.state.w < 768;
+    return {
+      isDesktop, isMobile, navDesktop: !isMobile,
+      wideA: isMobile ? '180%' : '0', wideB: isMobile ? '260%' : '0',
+      menuOpen: isMobile && this.state.menuOpen,
+      menuLabel: this.state.menuOpen ? 'Close' : 'Menu',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      progRef: this.progRef,
+      toTop: (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      toc: this.sections.map(([id, label]) => {
+        const on = this.state.active === id;
+        return { href: '#' + id, label, color: on ? '#1D1D1F' : '#6E6E73', weight: on ? 600 : 400, bar: on ? '#5856D6' : 'transparent' };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

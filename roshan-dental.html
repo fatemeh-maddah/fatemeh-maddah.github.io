@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roshan Dental Clinic · Concept · Fatemeh Maddah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%}
+body{background:#F5F5F7;color:#1D1D1F;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+*{box-sizing:border-box}
+a{color:#5856D6;text-decoration:none}
+a:hover{color:#4644B8}
+:focus-visible{outline:2px solid #5856D6;outline-offset:2px}
+</style>
+</helmet>
+<div style="height:100vh;display:flex;flex-direction:column;background:#F5F5F7">
+  <header style="flex:none;background:#FFFFFF;border-bottom:1px solid rgba(29,29,31,0.08)">
+    <div style="max-width:1440px;margin:0 auto;padding:10px clamp(16px,3vw,32px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px">
+      <div style="display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;min-width:0">
+        <a href="index.html#work" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;color:#1D1D1F" style-hover="color:#5856D6">← All work</a>
+        <span aria-hidden="true" style="width:1px;height:20px;background:rgba(29,29,31,0.12)"></span>
+        <div style="display:flex;align-items:center;gap:10px;min-width:0">
+          <h1 style="margin:0;font-size:16px;line-height:1.3;font-weight:600;letter-spacing:-0.01em">Roshan Dental Clinic</h1>
+          <span style="font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px;background:#F5F5F7;color:#1D1D1F;border:1px solid rgba(29,29,31,0.08)">Concept</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div role="group" aria-label="Preview size" style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#F5F5F7">
+          <sc-for list="{{ devices }}" as="d" hint-placeholder-count="3">
+            <button type="button" onClick="{{ d.pick }}" aria-pressed="{{ d.on }}" style="appearance:none;border:0;min-height:36px;padding:0 16px;border-radius:999px;font:500 14px Inter,sans-serif;cursor:pointer;background:{{ d.bg }};color:{{ d.fg }};box-shadow:{{ d.sh }};transition:background 200ms">{{ d.label }}</button>
+          </sc-for>
+        </div>
+        <a href="concepts/roshan-dental.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:#5856D6;color:#FFFFFF;font-size:14px;font-weight:500" style-hover="background:#4644B8;color:#FFFFFF">Open full page ↗</a>
+      </div>
+    </div>
+  </header>
+  <main ref="{{ stageRef }}" style="flex:1;min-height:0;display:flex;justify-content:center;padding:{{ pad }};overflow:hidden">
+    <div style="position:relative;flex:none;width:{{ frameW }};height:100%;border-radius:{{ radius }};overflow:hidden;background:#FFFFFF;box-shadow:{{ frameShadow }};transition:width 360ms cubic-bezier(.2,.7,.2,1)">
+      <iframe src="concepts/roshan-dental.html" title="Roshan Dental Clinic landing page, interactive" style="position:absolute;left:0;top:0;border:0;width:{{ innerW }};height:{{ innerH }};transform:{{ innerTf }};transform-origin:0 0;background:#FFFFFF"></iframe>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dev: 'desktop', sw: 1200, sh: 800 };
+  stageRef = React.createRef();
+  componentDidMount() {
+    this.measure = () => { const el = this.stageRef.current; if (!el) return; const b = el.getBoundingClientRect(); this.setState({ sw: b.width, sh: b.height }); };
+    this.ro = new ResizeObserver(this.measure);
+    this.stageRef.current && this.ro.observe(this.stageRef.current);
+    this.measure();
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const sizes = { desktop: 1440, tablet: 768, mobile: 375 };
+    const dev = this.state.dev, small = this.state.sw < 640;
+    const padPx = small || dev === 'desktop' ? 0 : 24;
+    const availW = Math.max(200, this.state.sw - padPx * 2), availH = Math.max(200, this.state.sh - padPx * 2);
+    const target = sizes[dev];
+    const scale = Math.min(1, availW / target);
+    const frameW = Math.min(target * scale, availW);
+    return {
+      stageRef: this.stageRef,
+      pad: padPx + 'px',
+      frameW: frameW + 'px',
+      innerW: target + 'px', innerH: (availH / scale) + 'px', innerTf: 'scale(' + scale + ')',
+      radius: dev === 'desktop' || small ? '0' : '24px',
+      frameShadow: dev === 'desktop' || small ? 'none' : '0 1px 2px rgba(29,29,31,0.06), 0 16px 40px rgba(29,29,31,0.1)',
+      devices: [['desktop', 'Desktop'], ['tablet', 'Tablet'], ['mobile', 'Mobile']].map(([k, label]) => {
+        const on = dev === k;
+        return { label, on, bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#1D1D1F' : '#6E6E73', sh: on ? '0 1px 3px rgba(29,29,31,0.12)' : 'none', pick: () => this.setState({ dev: k }) };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

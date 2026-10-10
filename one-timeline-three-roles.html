@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One timeline, three roles — Case study · Fatemeh Maddah</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FBFBFD;color:#1D1D1F;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#5856D6;text-decoration:none}
+a:hover{color:#4644B8}
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid #5856D6;outline-offset:3px;border-radius:8px}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#FBFBFD;color:#1D1D1F;font-family:Inter,system-ui,sans-serif">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(251,251,253,0.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid rgba(29,29,31,0.06)">
+  <div ref="{{ progRef }}" aria-hidden="true" style="position:absolute;left:0;top:0;height:2px;width:100%;background:#5856D6;transform-origin:0 50%;transform:scaleX(0)"></div>
+  <div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="index.html" style="color:#1D1D1F;font-weight:600;font-size:17px;letter-spacing:-0.01em">Fatemeh Maddah</a>
+    <sc-if value="{{ navDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:32px;font-size:14px">
+        <a href="index.html#work" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">Work</a>
+        <a href="index.html#about" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">About</a>
+        <a href="Fatemeh-Maddah-Resume.pdf" download="Fatemeh-Maddah-Resume.pdf" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">Resume</a>
+        <a href="#contact" style="display:inline-flex;align-items:center;min-height:44px;color:#1D1D1F" style-hover="color:#5856D6">Contact</a>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Menu" style="appearance:none;border:0;background:rgba(29,29,31,0.06);color:#1D1D1F;font:500 14px Inter,sans-serif;height:44px;padding:0 16px;border-radius:999px;cursor:pointer">{{ menuLabel }}</button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav style="display:flex;flex-direction:column;padding:8px clamp(20px,5vw,40px) 24px;font-size:24px;font-weight:600;letter-spacing:-0.02em">
+      <a href="index.html#work" style="color:#1D1D1F;padding:12px 0;border-bottom:1px solid rgba(29,29,31,0.08)">Work</a>
+      <a href="index.html#about" style="color:#1D1D1F;padding:12px 0;border-bottom:1px solid rgba(29,29,31,0.08)">About</a>
+      <a href="Fatemeh-Maddah-Resume.pdf" download="Fatemeh-Maddah-Resume.pdf" style="color:#1D1D1F;padding:12px 0;border-bottom:1px solid rgba(29,29,31,0.08)">Resume</a>
+      <a href="#contact" onClick="{{ closeMenu }}" style="color:#1D1D1F;padding:12px 0">Contact</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main>
+<section data-screen-label="Case study hero" style="max-width:1160px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,40px) 48px">
+  <a href="index.html#work" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500">← All work</a>
+  <h1 style="margin:20px 0 0;font-size:clamp(40px,6.4vw,80px);line-height:1.03;letter-spacing:-0.045em;font-weight:600;max-width:920px;text-wrap:balance">One timeline, three roles</h1>
+  <p style="margin:24px 0 0;max-width:680px;font-size:clamp(18px,2vw,22px);line-height:1.5;color:#6E6E73;text-wrap:pretty">Redesigning a shared project timeline from six stages to two, so every role could see where a project stood and what needed their action.</p>
+  <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:8px">
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">Information architecture</span>
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">User flows</span>
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">Redesign</span>
+    <span style="font-size:13px;font-weight:500;padding:4px 12px;border-radius:999px;background:#F5F5F7">Web and mobile</span>
+  </div>
+</section>
+
+<section data-screen-label="Cover and summary" style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px)">
+  <div style="border-radius:clamp(20px,3vw,32px);overflow:hidden;background:#E9E7FB">
+    <img src="assets/cs1/cs1-01-cover.png" alt="Project timeline screen from the redesigned flow" style="display:block;width:100%;height:auto">
+  </div>
+  <div style="margin-top:24px;background:#F5F5F7;border-radius:24px;padding:clamp(24px,3vw,32px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:24px 32px">
+    <div><div style="font-size:13px;color:#6E6E73">Role</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">UI/UX Designer (sole designer, PM sign-off)</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Team</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Project manager, developers</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Timeline</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">8 months</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Platform</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Web and mobile</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Tools</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Figma</div></div>
+    <div><div style="font-size:13px;color:#6E6E73">Outcome</div><div style="margin-top:6px;font-size:16px;font-weight:500;line-height:1.4">Six stages restructured into two; delivered as high-fidelity wireframes.</div></div>
+  </div>
+  <p style="margin:16px 0 0;padding:0 4px;font-size:14px;color:#6E6E73">Project name and details changed under NDA.</p>
+</section>
+
+<div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,5vw,40px);display:flex;gap:clamp(48px,6vw,80px);align-items:flex-start">
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <aside style="position:sticky;top:104px;flex:0 0 200px">
+      <p style="margin:0 0 16px;font-size:13px;font-weight:500;color:#6E6E73">On this page</p>
+      <nav style="display:flex;flex-direction:column;gap:2px;border-left:1px solid rgba(29,29,31,0.1)">
+        <sc-for list="{{ toc }}" as="t" hint-placeholder-count="7">
+          <a href="{{ t.href }}" style="display:block;margin-left:-1px;padding:6px 0 6px 16px;font-size:14px;line-height:1.4;border-left:1px solid {{ t.bar }};color:{{ t.color }};font-weight:{{ t.weight }};transition:color 200ms" style-hover="color:#1D1D1F">{{ t.label }}</a>
+        </sc-for>
+      </nav>
+    </aside>
+  </sc-if>
+
+  <article style="flex:1 1 auto;min-width:0;font-size:18px;line-height:1.65;color:#1D1D1F">
+
+    <section id="context" data-cs="" style="scroll-margin-top:96px;max-width:680px">
+      <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600">Context</h2>
+      <p style="margin:0;text-wrap:pretty">Atelio is a service marketplace. Clients who need a service don't contact specialists directly. A coordinator reviews each project and suggests the right specialists from their network. Each role works in its own panel.</p>
+    </section>
+
+    <section id="problem" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600">The problem</h2>
+        <p style="margin:0;text-wrap:pretty">Every project moved through a single six-stage timeline, and all three roles saw the same one:</p>
+        <p style="margin:20px 0 0;padding:16px 20px;border-radius:16px;background:#F5F5F7;font-size:16px;font-weight:500;line-height:1.5">Request → Suggest → Assign → Contract → Execution → Overview</p>
+        <p style="margin:20px 0 0;text-wrap:pretty">After launch, the business added new rules. Access started to change from stage to stage: some stages could only be acted on by the coordinator, others only by the specialist or only by the client.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty">The biggest challenge was approvals. Each part of the process had to be approved separately, one by one, before the project could move on. The Contract stage alone had three separate approvals: schedule, price, and the agreement itself. Milestones then needed their own stage after that. A timeline that every role saw, but only one role could move at a time, turned each approval into a possible bottleneck.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty">Then a new requirement arrived: specialists had to submit a bid, and the timeline had no natural place for it.</p>
+      </div>
+      <figure style="margin:48px 0 0;max-width:680px">
+        <img src="assets/cs1/cs1-02-old-contract.png" alt="The original Contract stage with three separate approvals" style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.5;color:#6E6E73">The original Contract stage: three separate approvals before a project could move on.</figcaption>
+      </figure>
+    </section>
+
+    <section id="gap" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600">A gap I found in my own first design</h2>
+        <p style="margin:0;text-wrap:pretty">While reviewing the flow, I noticed that coordinators couldn't see the project details at every stage, even though they needed them to suggest the right specialists. The details lived in the Request stage only. I had missed this in the first version.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty">In the redesign, the details open from a fixed project header, at any stage.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <div style="overflow-x:auto;overscroll-behavior-x:contain;border-radius:20px"><img src="assets/cs1/cs1-03-details-before-after.png" alt="Before and after: where project details can be opened" style="display:block;width:100%;min-width:{{ wideA }};height:auto;border-radius:20px"></div><sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><p aria-hidden="true" style="margin:8px 0 0;font-size:13px;color:#6E6E73">Swipe to see the full image →</p></sc-if>
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">Before: project details only in the Request stage. After: details open from any stage.</figcaption>
+      </figure>
+    </section>
+
+    <section id="decision" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600;text-wrap:balance">The decision: group stages by goal, not by permission</h2>
+        <p style="margin:0;text-wrap:pretty">I proposed merging the six stages into two, each built around one shared goal.</p>
+        <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+          <div style="border:1px solid rgba(29,29,31,0.12);border-radius:20px;padding:24px">
+            <p style="margin:0;font-size:16px;line-height:1.6;text-wrap:pretty"><strong style="font-weight:600">Specialist Selection &amp; Bidding</strong> (Request, Suggest, Assign, plus the new bid): coordinator recommendations, specialist bids, and the client's confirmation.</p>
+          </div>
+          <div style="border:1px solid rgba(29,29,31,0.12);border-radius:20px;padding:24px">
+            <p style="margin:0;font-size:16px;line-height:1.6;text-wrap:pretty"><strong style="font-weight:600">Agreement &amp; Activation</strong> (Contract, Execution): terms, budget, files and milestones, agreed in one place.</p>
+          </div>
+        </div>
+        <p style="margin:32px 0 0;text-wrap:pretty">Three principles guided the structure:</p>
+        <ul style="margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column">
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">One goal per stage</strong>, so each role understands why the project is there.</li>
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">One approval instead of many.</strong> Schedule, budget, files and milestones are reviewed together and approved with a single action.</li>
+          <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);border-bottom:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Shared context, always visible.</strong> Project details and everyone involved stay in a fixed header, so no role loses context at any stage.</li>
+        </ul>
+      </div>
+      <figure style="margin:48px 0 0">
+        <div style="overflow-x:auto;overscroll-behavior-x:contain;border-radius:20px"><img src="assets/cs1/cs1-04-six-to-two.png" alt="Diagram: six stages merged into two" style="display:block;width:100%;min-width:{{ wideA }};height:auto;border-radius:20px"></div><sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><p aria-hidden="true" style="margin:8px 0 0;font-size:13px;color:#6E6E73">Swipe to see the full image →</p></sc-if>
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">How six stages became two, and where the new bid requirement fits.</figcaption>
+      </figure>
+    </section>
+
+    <section id="solution" data-cs="" style="scroll-margin-top:96px;margin-top:96px">
+      <div style="max-width:680px">
+        <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600">The solution</h2>
+        <p style="margin:0;text-wrap:pretty"><strong style="font-weight:600">Specialist Selection &amp; Bidding.</strong> The coordinator recommends specialists. Each specialist reviews the project and either bids or declines. The client sees every specialist's status on their card and selects one. The project then moves to the next stage automatically.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <div style="overflow-x:auto;overscroll-behavior-x:contain;border-radius:20px"><img src="assets/cs1/cs1-05-three-roles.png" alt="Three panels: coordinator, specialist and client" style="display:block;width:100%;min-width:{{ wideB }};height:auto;border-radius:20px"></div><sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><p aria-hidden="true" style="margin:8px 0 0;font-size:13px;color:#6E6E73">Swipe to see the full image →</p></sc-if>
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">One stage, three roles: each panel shows the same structure with role-specific actions.</figcaption>
+      </figure>
+      <div style="max-width:680px;margin-top:48px">
+        <p style="margin:0;text-wrap:pretty"><strong style="font-weight:600">Agreement &amp; Activation.</strong> Time and budget, contract files and milestones sit on one screen. Both the client and the specialist approve the same contract, and each person's status (signed or pending) shows next to their name. Once both have signed, the project starts automatically.</p>
+      </div>
+      <figure style="margin:48px 0 0;max-width:680px">
+        <img src="assets/cs1/cs1-06-agreement.png" alt="Agreement and Activation stage, client panel" style="display:block;width:100%;height:auto;border-radius:20px">
+        <figcaption style="margin-top:12px;font-size:14px;line-height:1.5;color:#6E6E73">The Agreement &amp; Activation stage from the client's panel.</figcaption>
+      </figure>
+      <div style="max-width:680px;margin-top:48px">
+        <p style="margin:0;text-wrap:pretty"><strong style="font-weight:600">Access grows with involvement.</strong> Specialists respond to requests and bid from their own panel, and only join the shared project page once they're selected. Until then, the selection process stays between the coordinator and the client.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty"><strong style="font-weight:600">A record of every change.</strong> A Log tab sits next to the timeline and records every change, such as a milestone being added, so each role can see what happened without having to ask.</p>
+        <p style="margin:20px 0 0;text-wrap:pretty"><strong style="font-weight:600">A way back.</strong> If the client offboards a specialist during the agreement stage, the project returns to Specialist Selection so a new specialist can be chosen.</p>
+      </div>
+      <figure style="margin:48px 0 0">
+        <div style="overflow-x:auto;overscroll-behavior-x:contain;border-radius:20px"><img src="assets/cs1/cs1-07-contract-before-after.png" alt="Before and after: contract approvals" style="display:block;width:100%;min-width:{{ wideA }};height:auto;border-radius:20px"></div><sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><p aria-hidden="true" style="margin:8px 0 0;font-size:13px;color:#6E6E73">Swipe to see the full image →</p></sc-if>
+        <figcaption style="margin-top:12px;max-width:680px;font-size:14px;line-height:1.5;color:#6E6E73">Before: three approvals and a separate milestones stage. After: one shared contract, signed by both sides.</figcaption>
+      </figure>
+    </section>
+
+    <section id="outcome" data-cs="" style="scroll-margin-top:96px;margin-top:96px;max-width:680px">
+      <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600">Outcome</h2>
+      <p style="margin:0;text-wrap:pretty">The redesign was delivered as high-fidelity wireframes. In internal testing, it removed the bottlenecks the team had run into with the original flow, and the merged stages were simpler to move through. The engagement ended before the redesign was implemented, so there is no data from real users.</p>
+    </section>
+
+    <section id="learned" data-cs="" style="scroll-margin-top:96px;margin-top:96px;max-width:680px">
+      <h2 style="margin:0 0 20px;font-size:clamp(28px,3.4vw,40px);line-height:1.12;letter-spacing:-0.03em;font-weight:600">What I learned</h2>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+        <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Business rules change after launch.</strong> Structuring stages around user goals, rather than around who has permission, made the flow resilient to new rules like bidding.</li>
+        <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Context matters for every role.</strong> Missing access to project details was small on screen but blocked a whole role.</li>
+        <li style="padding:16px 0;border-top:1px solid rgba(29,29,31,0.1);border-bottom:1px solid rgba(29,29,31,0.1);text-wrap:pretty"><strong style="font-weight:600">Test with real users earlier.</strong> Next time, I would validate the flow with real users instead of relying on internal testing alone.</li>
+      </ul>
+    </section>
+  </article>
+</div>
+
+<section data-screen-label="Next case study" style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,40px) clamp(96px,12vw,144px)">
+  <a href="editing-where-you-see-it.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:32px;align-items:center;padding:clamp(24px,4vw,48px);border-radius:32px;background:#E3EEF8;color:#1D1D1F;transition:background 200ms" style-hover="background:#DAE7F4;color:#1D1D1F">
+    <div>
+      <p style="margin:0 0 12px;font-size:14px;font-weight:500;color:#515154">Next case study</p>
+      <h2 style="margin:0;font-size:clamp(32px,4.4vw,52px);line-height:1.08;letter-spacing:-0.035em;font-weight:600">Editing where you see it</h2>
+      <span style="display:inline-flex;align-items:center;margin-top:24px;height:44px;padding:0 18px;border-radius:999px;background:#FFFFFF;color:#1D1D1F;font-size:14px;font-weight:500">Read case study →</span>
+    </div>
+    <div style="aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:rgba(255,255,255,0.45)">
+      <img src="assets/cs3/cs3-01-cover.png" alt="Editing where you see it: redesigned profile" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover">
+    </div>
+  </a>
+</section>
+
+<section id="contact" data-screen-label="Contact" style="scroll-margin-top:64px;background:#161617;color:#F5F5F7">
+  <div style="max-width:1160px;margin:0 auto;padding:clamp(96px,12vw,144px) clamp(20px,5vw,40px) 48px">
+    <p style="margin:0 0 16px;font-size:14px;font-weight:500;color:#A1A1A6">Contact</p>
+    <h2 style="margin:0;font-size:clamp(40px,6.4vw,80px);line-height:1.04;letter-spacing:-0.045em;font-weight:600;max-width:820px;text-wrap:balance">Hiring a UI/UX designer? Let's talk.</h2>
+    <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+      <a href="mailto:FatemehSadatMaddah@Gmail.com" style="display:flex;flex-direction:column;gap:8px;padding:28px 32px;border-radius:24px;background:#1F1F21;color:#F5F5F7;transition:background 200ms" style-hover="background:#28282B;color:#F5F5F7">
+        <span style="font-size:14px;color:#A1A1A6">Email</span>
+        <span style="font-size:clamp(18px,2vw,22px);font-weight:500;letter-spacing:-0.01em;word-break:break-word">FatemehSadatMaddah@Gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/fatemeh-maddah/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:8px;padding:28px 32px;border-radius:24px;background:#1F1F21;color:#F5F5F7;transition:background 200ms" style-hover="background:#28282B;color:#F5F5F7">
+        <span style="font-size:14px;color:#A1A1A6">LinkedIn</span>
+        <span style="font-size:clamp(18px,2vw,22px);font-weight:500;letter-spacing:-0.01em;word-break:break-word">linkedin.com/in/fatemeh-maddah ↗</span>
+      </a>
+    </div>
+    <footer style="margin-top:clamp(96px,10vw,128px);padding-top:24px;border-top:1px solid rgba(245,245,247,0.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:#A1A1A6;align-items:center">
+      <span>© 2026 Fatemeh Maddah</span>
+      <a href="#" onClick="{{ toTop }}" style="display:inline-flex;align-items:center;min-height:44px;color:#A1A1A6" style-hover="color:#F5F5F7">Back to top ↑</a>
+    </footer>
+  </div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, active: 'context', menuOpen: false };
+  progRef = React.createRef();
+  sections = [['context','Context'],['problem','The problem'],['gap','A gap I found'],['decision','The decision'],['solution','The solution'],['outcome','Outcome'],['learned','What I learned']];
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onScroll = () => {
+      const d = document.documentElement, max = d.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (this.progRef.current) this.progRef.current.style.transform = 'scaleX(' + p + ')';
+      let cur = this.sections[0][0];
+      for (const [id] of this.sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) cur = id;
+      }
+      if (cur !== this.state.active) this.setState({ active: cur });
+    };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('load', this.onResize);
+    this.ro = new ResizeObserver(() => { this.onResize(); this.onScroll(); });
+    this.ro.observe(document.documentElement);
+    this.onResize(); this.onScroll();
+    const start = () => {
+      if (window.innerHeight <= 200) return setTimeout(start, 100);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      this.io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+      }), { threshold: 0.05 });
+      document.querySelectorAll('[data-cs]').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
+        el.style.transition = 'opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1)';
+        this.io.observe(el);
+      });
+    };
+    setTimeout(start, 50);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('load', this.onResize);
+    this.ro && this.ro.disconnect();
+    this.io && this.io.disconnect();
+  }
+  renderVals() {
+    const isDesktop = this.state.w >= 1100;
+    const isMobile = this.state.w < 768;
+    return {
+      isDesktop, isMobile, navDesktop: !isMobile,
+      wideA: isMobile ? '180%' : '0', wideB: isMobile ? '260%' : '0',
+      menuOpen: isMobile && this.state.menuOpen,
+      menuLabel: this.state.menuOpen ? 'Close' : 'Menu',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      progRef: this.progRef,
+      toTop: (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      toc: this.sections.map(([id, label]) => {
+        const on = this.state.active === id;
+        return { href: '#' + id, label, color: on ? '#1D1D1F' : '#6E6E73', weight: on ? 600 : 400, bar: on ? '#5856D6' : 'transparent' };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
