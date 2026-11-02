@@ -1,0 +1,36 @@
+/* Persian (RTL) overrides, loaded after the page styles on /fa/ pages. */
+:root{
+  --ui:"Vazirmatn",Tahoma,system-ui,sans-serif;
+  --display:"Vazirmatn",Tahoma,system-ui,sans-serif;
+  --dls:0; --dw:700; --dw-name:800;
+}
+:root[data-font="serif"]{--display:"Noto Naskh Arabic","Vazirmatn",serif;--dw:700;--dw-name:700;--dls:0}
+:root[data-font="syne"]{--display:"Lalezar","Vazirmatn",sans-serif;--dw:400;--dw-name:400;--dls:0}
+body{line-height:1.7}
+.eyebrow,.sec h2,.prop-label{letter-spacing:0}
+.prose p,.prose ul,.prose ol{line-height:1.95}
+.summary,.lead,.about p{line-height:1.85}
+
+/* keep the Layers panel on the right, as in the English site */
+.shell{direction:ltr}
+.shell>*{direction:rtl}
+
+/* mirror the few physical left/right values */
+.row.child{padding-left:8px;padding-right:30px}
+.prose ul,.prose ol{padding-left:0;padding-right:1.2em}
+.flow li+li::before{content:"←";margin:0 -2px 0 8px}
+.back-top svg,.row.muted svg{transform:scaleX(-1)}
+.crow dd a{unicode-bidi:plaintext}
+.size,.zoom-num{direction:ltr}
+
+/* intro frame: the resize animation runs left-to-right, the text inside reads right-to-left */
+.stage{direction:ltr}
+.flabel{left:auto;right:0}
+.content{flex-direction:row-reverse}
+.txt{direction:rtl;text-align:right}
+@media (max-width:720px){
+  .content{flex-direction:column;align-items:flex-end}
+}
+
+/* language switch */
+.lang-top{font:600 13px var(--ui)}

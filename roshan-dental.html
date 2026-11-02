@@ -1,87 +1,154 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#2C2C2C">
+<link rel="canonical" href="https://fatemeh-maddah.github.io/roshan-dental.html">
+<link rel="alternate" hreflang="en" href="https://fatemeh-maddah.github.io/roshan-dental.html">
+<link rel="alternate" hreflang="fa" href="https://fatemeh-maddah.github.io/fa/roshan-dental.html">
+<link rel="alternate" hreflang="x-default" href="https://fatemeh-maddah.github.io/roshan-dental.html">
+<title>Roshan Dental Clinic — Fatemeh Maddah</title>
+<meta name="description" content="Roshan Dental Clinic: a booking-first landing page concept, Persian RTL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/case.css">
+<style>.seg a{font:500 12px var(--ui);color:var(--muted);text-decoration:none;border-radius:4px;height:28px;display:flex;align-items:center;justify-content:center}.seg a[aria-current="page"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.2)}.seg a:hover{color:var(--fg)}@media (max-width:720px){.seg a{height:40px}}</style>
 </head>
 <body>
-<x-dc>
-<helmet>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Roshan Dental Clinic · Concept · Fatemeh Maddah</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-html,body{margin:0;height:100%}
-body{background:#F5F5F7;color:#1D1D1F;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty}
-*{box-sizing:border-box}
-a{color:#5856D6;text-decoration:none}
-a:hover{color:#4644B8}
-:focus-visible{outline:2px solid #5856D6;outline-offset:2px}
-</style>
-</helmet>
-<div style="height:100vh;display:flex;flex-direction:column;background:#F5F5F7">
-  <header style="flex:none;background:#FFFFFF;border-bottom:1px solid rgba(29,29,31,0.08)">
-    <div style="max-width:1440px;margin:0 auto;padding:10px clamp(16px,3vw,32px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px">
-      <div style="display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;min-width:0">
-        <a href="index.html#work" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;color:#1D1D1F" style-hover="color:#5856D6">← All work</a>
-        <span aria-hidden="true" style="width:1px;height:20px;background:rgba(29,29,31,0.12)"></span>
-        <div style="display:flex;align-items:center;gap:10px;min-width:0">
-          <h1 style="margin:0;font-size:16px;line-height:1.3;font-weight:600;letter-spacing:-0.01em">Roshan Dental Clinic</h1>
-          <span style="font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px;background:#F5F5F7;color:#1D1D1F;border:1px solid rgba(29,29,31,0.08)">Concept</span>
+<header class="top">
+  <a class="btn btn-line back-top" href="index.html#ui-work" data-page aria-label="Back to UI work"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3L4.5 7l4 4"/></svg><span>Back</span></a>
+  <span class="top-sep" aria-hidden="true"></span>
+  <div class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html" data-page>Portfolio</a><span>/</span><a href="index.html#ui-work" data-page>UI work</a><span>/</span><b>Roshan Dental Clinic</b></nav>
+  <div class="grow"></div>
+  <a class="btn btn-blue resume-top" href="Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+  <button class="btn btn-line layers-btn" type="button" id="openPanel" aria-controls="panel" aria-expanded="false">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7 1.5L1.5 4.5 7 7.5l5.5-3z"/><path d="M1.5 7.5L7 10.5l5.5-3"/></svg>Layers</button>
+  <div class="progress" id="progress"></div>
+</header>
+
+<div class="shell">
+  <main class="canvas" id="top">
+    <div class="board">
+
+      <section class="frm" id="overview" aria-labelledby="title">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>Overview</div>
+        <div class="frm-body">
+          <a class="back" href="index.html#ui-work" data-page>← All UI work</a>
+          <p class="eyebrow">UI work · Concept</p>
+          <h1 id="title">Roshan Dental Clinic</h1>
+          <p class="summary">A calm, booking-first landing page for a family dental clinic in Tehran, designed right-to-left in Persian.</p>
+          <div class="tags"><span class="tag">Landing page</span><span class="tag">Concept</span><span class="tag">Persian / RTL</span></div>
+          <dl class="meta">
+            <div><dt>Type</dt><dd>Landing page concept</dd></div>
+            <div><dt>Language</dt><dd>Persian, right-to-left</dd></div>
+            <div><dt>Tools</dt><dd>Figma</dd></div>
+          </dl>
         </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <div role="group" aria-label="Preview size" style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#F5F5F7">
-          <sc-for list="{{ devices }}" as="d" hint-placeholder-count="3">
-            <button type="button" onClick="{{ d.pick }}" aria-pressed="{{ d.on }}" style="appearance:none;border:0;min-height:36px;padding:0 16px;border-radius:999px;font:500 14px Inter,sans-serif;cursor:pointer;background:{{ d.bg }};color:{{ d.fg }};box-shadow:{{ d.sh }};transition:background 200ms">{{ d.label }}</button>
-          </sc-for>
+      </section>
+      <section class="frm" id="preview" aria-labelledby="h-preview">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>Live preview</div>
+        <div class="frm-body">
+          <h2 id="h-preview">Live preview</h2>
+          <div class="viewer-bar">
+            <div class="seg" role="group" aria-label="Preview size" id="devices">
+              <button type="button" data-dev="desktop" aria-pressed="true">Desktop</button>
+              <button type="button" data-dev="tablet" aria-pressed="false">Tablet</button>
+              <button type="button" data-dev="mobile" aria-pressed="false">Mobile</button>
+            </div>
+            <a class="btn btn-line" href="concepts/roshan-dental.html" target="_blank" rel="noopener">Open full page ↗</a>
+          </div>
+          <div class="stage" id="stage"><div class="device" id="device"><iframe id="frame" data-src="concepts/roshan-dental.html" title="Roshan Dental Clinic landing page, live"></iframe></div>
+            <div class="poster" id="poster"><img src="assets/ui/roshan-cover.webp" alt="" width="900" height="535"><button class="btn btn-blue" type="button" id="loadLive">Load live preview</button></div></div>
+          <p class="stage-note">The live page loads when you ask for it (about 2 MB). Scroll inside the frame to see the whole landing page.</p>
         </div>
-        <a href="concepts/roshan-dental.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:#5856D6;color:#FFFFFF;font-size:14px;font-weight:500" style-hover="background:#4644B8;color:#FFFFFF">Open full page ↗</a>
-      </div>
-    </div>
-  </header>
-  <main ref="{{ stageRef }}" style="flex:1;min-height:0;display:flex;justify-content:center;padding:{{ pad }};overflow:hidden">
-    <div style="position:relative;flex:none;width:{{ frameW }};height:100%;border-radius:{{ radius }};overflow:hidden;background:#FFFFFF;box-shadow:{{ frameShadow }};transition:width 360ms cubic-bezier(.2,.7,.2,1)">
-      <iframe src="concepts/roshan-dental.html" title="Roshan Dental Clinic landing page, interactive" style="position:absolute;left:0;top:0;border:0;width:{{ innerW }};height:{{ innerH }};transform:{{ innerTf }};transform-origin:0 0;background:#FFFFFF"></iframe>
+      </section>
+      <section class="frm" aria-label="Next in UI work">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>Next in UI work</div>
+        <a class="frm-body next" href="split-cost.html" data-page>
+          <div><p class="eyebrow">Next in UI work</p><h2>Split cost</h2><span class="go">View concept →</span></div>
+          <div class="shot"><img width="900" height="675" src="assets/ui/split-cover.webp" alt="Split cost mobile app screens" loading="lazy"></div>
+        </a>
+      </section>
+      <section class="frm contact" id="contact" aria-labelledby="h-contact">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>Contact</div>
+        <div class="frm-body">
+          <h2 id="h-contact">Hiring a UI/UX designer? Let's talk.</h2>
+          <dl>
+            <div class="crow"><dt>Email</dt><dd><a href="mailto:FatemehSadatMaddah@Gmail.com" id="email">FatemehSadatMaddah@Gmail.com</a><button class="btn btn-line copy" type="button" id="copyEmail">Copy</button></dd></div>
+            <div class="crow"><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/fatemeh-maddah/" target="_blank" rel="noopener">linkedin.com/in/fatemeh-maddah ↗</a></dd></div>
+            <div class="crow"><dt>Telegram</dt><dd><a href="https://t.me/fatemee_maddah" target="_blank" rel="noopener">@fatemee_maddah ↗</a></dd></div>
+          </dl>
+          <div class="foot"><span>© 2026 Fatemeh Maddah</span><a href="#top">Back to top ↑</a></div>
+        </div>
+      </section>
+
     </div>
   </main>
+
+  <aside class="side" id="panel" aria-label="Layers">
+    <div class="side-head">Layers<button class="btn btn-line" type="button" id="closePanel" aria-label="Close layers">✕</button></div>
+    <nav class="sec" aria-label="On this page">
+      <h2>On this page</h2>
+      <a class="row muted" href="index.html#ui-work" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7.5 2.5L4 6l3.5 3.5"/></svg>All UI work</a>
+      <a class="row active" href="#overview" data-spy="overview"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>Overview</a>
+      <a class="row" href="#preview" data-spy="preview"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>Live preview</a>
+    </nav>
+    <nav class="sec" aria-label="UI work">
+      <h2>UI work</h2>
+      <a class="row" href="roshan-dental.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>Roshan Dental Clinic</a>
+      <a class="row" href="split-cost.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>Split cost</a>
+    </nav>
+    <div class="sec" aria-label="Language">
+      <h2>Language</h2>
+      <div class="prop"><div class="seg" role="group" aria-label="Language"><a href="roshan-dental.html" lang="en" hreflang="en" aria-current="page">English</a><a href="fa/roshan-dental.html" lang="fa" hreflang="fa">فارسی</a></div></div>
+    </div>
+    <div class="sec" aria-label="Design">
+      <h2>Design</h2>
+      <div class="prop"><span class="prop-label" id="lbl-theme">Theme</span>
+        <div class="seg" role="group" aria-labelledby="lbl-theme">
+          <button type="button" data-skin="dark" aria-pressed="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M10 7.5A4.5 4.5 0 014.5 2a4.5 4.5 0 105.5 5.5z" fill="currentColor"/></svg>Dark</button>
+          <button type="button" data-skin="light" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="6" r="2.4"/><path d="M6 .8v1.4M6 9.8v1.4M.8 6h1.4M9.8 6h1.4M2.3 2.3l1 1M8.7 8.7l1 1M2.3 9.7l1-1M8.7 3.3l1-1"/></svg>Light</button>
+        </div></div>
+      <div class="prop"><span class="prop-label" id="lbl-font">Typography</span>
+        <div class="fonts" role="group" aria-labelledby="lbl-font">
+          <button class="font-opt" type="button" data-font="inter" aria-pressed="true">Inter Tight<span class="chk">✓</span></button>
+          <button class="font-opt" type="button" data-font="serif" aria-pressed="false">Instrument Serif<span class="chk">✓</span></button>
+          <button class="font-opt" type="button" data-font="syne" aria-pressed="false">Syne<span class="chk">✓</span></button>
+        </div></div>
+    </div>
+    <div class="sec links">
+      <h2>Links</h2>
+      <a class="btn btn-blue" href="Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+      <a class="btn btn-line" href="https://www.figma.com/design/IYb5JQwZ62sMDHg5AlnyRL?node-id=764-17307" target="_blank" rel="noopener">Figma ↗</a>
+      <a class="btn btn-line" href="https://www.linkedin.com/in/fatemeh-maddah/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </aside>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { dev: 'desktop', sw: 1200, sh: 800 };
-  stageRef = React.createRef();
-  componentDidMount() {
-    this.measure = () => { const el = this.stageRef.current; if (!el) return; const b = el.getBoundingClientRect(); this.setState({ sw: b.width, sh: b.height }); };
-    this.ro = new ResizeObserver(this.measure);
-    this.stageRef.current && this.ro.observe(this.stageRef.current);
-    this.measure();
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast" hidden></div>
+<script src="assets/case.js"></script>
+<script>
+(function(){
+  const stage=document.getElementById('stage'),dev=document.getElementById('device'),fr=document.getElementById('frame');
+  const W={desktop:1440,tablet:768,mobile:390}; let cur=innerWidth<720?'mobile':'desktop';
+  function fit(){
+    const sw=stage.clientWidth,sh=stage.clientHeight,t=W[cur];
+    const framed=cur!=='desktop'&&sw>t*0.6; stage.classList.toggle('framed',framed);
+    const avail=framed?sw-48:sw; const s=Math.min(1,avail/t);
+    const h=(framed?sh-32:sh);
+    dev.style.width=Math.round(t*s)+'px';
+    fr.style.width=t+'px'; fr.style.height=Math.round(h/s)+'px'; fr.style.transform='scale('+s+')';
   }
-  componentWillUnmount() { this.ro && this.ro.disconnect(); }
-  renderVals() {
-    const sizes = { desktop: 1440, tablet: 768, mobile: 375 };
-    const dev = this.state.dev, small = this.state.sw < 640;
-    const padPx = small || dev === 'desktop' ? 0 : 24;
-    const availW = Math.max(200, this.state.sw - padPx * 2), availH = Math.max(200, this.state.sh - padPx * 2);
-    const target = sizes[dev];
-    const scale = Math.min(1, availW / target);
-    const frameW = Math.min(target * scale, availW);
-    return {
-      stageRef: this.stageRef,
-      pad: padPx + 'px',
-      frameW: frameW + 'px',
-      innerW: target + 'px', innerH: (availH / scale) + 'px', innerTf: 'scale(' + scale + ')',
-      radius: dev === 'desktop' || small ? '0' : '24px',
-      frameShadow: dev === 'desktop' || small ? 'none' : '0 1px 2px rgba(29,29,31,0.06), 0 16px 40px rgba(29,29,31,0.1)',
-      devices: [['desktop', 'Desktop'], ['tablet', 'Tablet'], ['mobile', 'Mobile']].map(([k, label]) => {
-        const on = dev === k;
-        return { label, on, bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#1D1D1F' : '#6E6E73', sh: on ? '0 1px 3px rgba(29,29,31,0.12)' : 'none', pick: () => this.setState({ dev: k }) };
-      })
-    };
-  }
-}
+  function set(v){cur=v;document.querySelectorAll('[data-dev]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.dev===v));fit()}
+  document.querySelectorAll('[data-dev]').forEach(b=>b.addEventListener('click',()=>set(b.dataset.dev)));
+  new ResizeObserver(fit).observe(stage); set(cur);
+  document.getElementById('loadLive').addEventListener('click',()=>{fr.src=fr.dataset.src;document.getElementById('poster').remove()});
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#2C2C2C">
+<link rel="canonical" href="https://fatemeh-maddah.github.io/fa/">
+<link rel="alternate" hreflang="en" href="https://fatemeh-maddah.github.io/">
+<link rel="alternate" hreflang="fa" href="https://fatemeh-maddah.github.io/fa/">
+<link rel="alternate" hreflang="x-default" href="https://fatemeh-maddah.github.io/">
+<title>فاطمه مداح | طراح UI/UX</title>
+<meta name="description" content="طراح UI/UX. کیس‌استادی‌ها و نمونه‌کارهای UI فاطمه مداح.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: Figma editor shell. Sticky top bar, the page scrolls as a dotted canvas of labelled frames,
+   every section listed in a right-hand Layers panel (docked on desktop, a drawer on tablet and phone). */
+:root{
+  --canvas:#1E1E1E; --panel:#2C2C2C; --panel-2:#383838; --line:#3D3D3D;
+  --fg:#FFFFFF; --muted:#B3B3B3; --faint:#8A8A8A;
+  --blue:#0D99FF; --blue-hover:#0B87E0; --blue-soft:rgba(13,153,255,.16);
+  --ui:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Inter Tight","Inter",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --top:48px; --side:272px;
+  --dots:#323232; --toast-bg:#FFFFFF; --toast-fg:#1E1E1E;
+  --dw:600; --dw-name:700; --dls:-.025em; --photo-bg:linear-gradient(180deg,#1C3A63,#0E1F38);
+  color-scheme:dark;
+}
+/* light theme, chosen in the Design panel (own attribute so the host's theme never overrides it) */
+:root[data-skin="light"]{
+  --canvas:#F5F5F5; --panel:#FFFFFF; --panel-2:#EFEFEF; --line:#E3E3E3;
+  --fg:#1E1E1E; --muted:#5C5C5C; --faint:#8C8C8C; --blue-soft:rgba(13,153,255,.12);
+  --dots:#D6D6D6; --toast-bg:#1E1E1E; --toast-fg:#FFFFFF;
+  color-scheme:light;
+}
+/* heading fonts */
+:root[data-font="serif"]{--display:"Instrument Serif",Georgia,"Times New Roman",serif;--dw:400;--dw-name:400;--dls:-.01em}
+:root[data-font="syne"]{--display:"Syne","Inter",system-ui,sans-serif;--dw:700;--dw-name:800;--dls:-.02em}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + 24px)}
+body{background:var(--canvas);color:var(--fg);font-family:var(--ui);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--panel);z-index:30}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:var(--top);display:flex;align-items:center;gap:12px;
+  background:var(--panel);border-bottom:1px solid var(--line);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.logo{width:16px;height:24px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);flex:none}
+.logo i{display:block}
+.logo i:nth-child(1){background:#F24E1E;border-radius:8px 0 0 8px}.logo i:nth-child(2){background:#FF7262;border-radius:0 8px 8px 0}
+.logo i:nth-child(3){background:#A259FF;border-radius:8px 0 0 8px}.logo i:nth-child(4){background:var(--blue);border-radius:50%}
+.logo i:nth-child(5){background:#0ACF83;border-radius:8px 0 8px 8px}
+.crumb{display:flex;gap:6px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.crumb span{color:var(--muted)} .crumb b{font-weight:500}
+.top .grow{flex:1}
+.zoom{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.btn{font:500 13px var(--ui);border:0;border-radius:6px;height:32px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;text-decoration:none;white-space:nowrap;color:var(--fg);background:transparent}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-hover)}
+.btn-line{box-shadow:inset 0 0 0 1px var(--line)}.btn-line:hover{background:var(--panel-2)}
+.layers-btn{display:none}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:minmax(0,1fr) var(--side)}
+.canvas{min-width:0;background-image:radial-gradient(circle,var(--dots) 1px,transparent 1.3px);background-size:24px 24px;
+  padding-block:56px 120px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.board{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:96px}
+
+/* frame = a section on the canvas, labelled like a Figma frame */
+.frm{position:relative;scroll-margin-top:calc(var(--top) + 32px)}
+.frm-label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--faint);margin:0 0 8px;transition:color .15s}
+.frm-label svg{flex:none}
+.frm-body{background:var(--panel);border-radius:4px;outline:1px solid transparent;transition:outline-color .15s;padding:clamp(20px,4vw,48px)}
+.frm:hover .frm-body,.frm.is-current .frm-body{outline-color:var(--blue)}
+.frm:hover .frm-label,.frm.is-current .frm-label{color:var(--blue)}
+.eyebrow{font-size:12px;font-weight:500;color:var(--blue);margin:0 0 10px;letter-spacing:.02em}
+.h2{font:var(--dw) clamp(28px,3.6vw,44px)/1.1 var(--display);letter-spacing:var(--dls);margin:0;text-wrap:balance}
+.lead{color:var(--muted);font-size:15px;max-width:60ch;margin:12px 0 0}
+
+/* ---------- intro (animated frame) ---------- */
+.intro{display:flex;flex-direction:column;align-items:center;gap:40px;padding-block:24px 8px}
+.stage{position:relative;max-width:100%}
+.flabel{position:absolute;left:0;top:-22px;font-size:12px;color:var(--blue);font-weight:500;white-space:nowrap}
+.frame{position:relative;width:var(--w,600px);height:var(--h,210px);max-width:100%;outline:1px solid var(--blue);background:var(--panel);border-radius:2px;
+  transition:width .9s cubic-bezier(.65,0,.25,1),height .9s cubic-bezier(.65,0,.25,1)}
+.clip{position:absolute;inset:0;overflow:hidden}
+.content{position:absolute;left:0;top:0;display:flex;gap:28px;align-items:center;padding:28px}
+.photo{width:160px;height:160px;flex:none;border-radius:18px;overflow:hidden;position:relative;
+  background:var(--photo-bg);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.2,1),background .3s}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+.txt{min-width:0}
+.hi{font-size:13px;color:var(--muted);margin:0 0 6px;transition:opacity .4s}
+.name{font:var(--dw-name) 44px/1.05 var(--display);letter-spacing:var(--dls);margin:0;white-space:nowrap;min-height:1.05em}
+.caret{display:inline-block;width:2px;height:.9em;background:var(--blue);margin-left:3px;vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+.role{margin:12px 0 0;font-size:16px;color:var(--fg);transition:opacity .5s .1s,transform .5s .1s}
+.role span{color:var(--muted)}
+.handle{position:absolute;width:8px;height:8px;background:#fff;border:1px solid var(--blue);border-radius:1px;z-index:2}
+.h-tl{left:-4px;top:-4px}.h-tr{right:-4px;top:-4px}.h-bl{left:-4px;bottom:-4px}.h-br{right:-4px;bottom:-4px}
+.size{position:absolute;left:50%;bottom:-26px;transform:translateX(-50%);background:var(--blue);color:#fff;font:500 11px var(--mono);
+  padding:2px 6px;border-radius:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cursor{position:absolute;left:0;top:0;pointer-events:none;z-index:5;transition:opacity .3s}
+.cursor svg{display:block}
+.cursor span{position:absolute;left:14px;top:16px;background:#A259FF;color:#fff;font:500 11px var(--ui);padding:2px 6px;border-radius:0 6px 6px 6px;white-space:nowrap}
+.is-hidden{opacity:0}.photo.is-hidden{transform:scale(.88)}.role.is-hidden{transform:translateY(6px)}
+.intro-meta{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:#14AE5C;box-shadow:0 0 0 3px rgba(20,174,92,.2)}
+.intro-meta p{margin:0;color:var(--muted);max-width:46ch}
+.ctas{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.ctas .btn{height:40px;padding:0 18px;font-size:14px}
+
+/* ---------- case studies ---------- */
+.cs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:32px}
+.card{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--fg);border-radius:10px;padding:10px;margin:-10px;transition:background .15s}
+.card:hover{background:var(--panel-2)}
+.card.wide{grid-column:1/-1}
+.cover{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#E9E7FB;max-width:100%}
+.card.wide .cover{aspect-ratio:16/8}
+.cover img{width:100%;height:100%;object-fit:cover;object-position:50% 0;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .cover img{transform:scale(1.02)}
+.card h3{font:var(--dw) 22px/1.2 var(--display);letter-spacing:var(--dls);margin:0}
+.card.wide h3{font-size:clamp(24px,2.6vw,30px)}
+.card p{margin:6px 0 0;color:var(--muted);max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:12px;color:var(--muted);background:var(--canvas);border-radius:4px;padding:3px 8px}
+.go{font-size:13px;font-weight:500;color:var(--blue);margin-top:8px;display:inline-block}
+.nda{font-size:13px;color:var(--faint);margin:24px 0 0}
+
+/* ---------- UI work ---------- */
+.ui-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:32px}
+.ui-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:12px;border-radius:10px;padding:10px;margin:-10px;transition:background .15s}
+.ui-card:hover{background:var(--panel-2)}
+.ui-card:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.ui-card .cover{aspect-ratio:4/3}
+.ui-card h3{font:var(--dw) 18px/1.25 var(--display);margin:0}
+.ui-card p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:start}
+.about p{color:var(--muted);font-size:16px;line-height:1.6;max-width:58ch;margin:16px 0 0}
+.skills h3{font-size:12px;font-weight:600;margin:0 0 12px;color:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;border-radius:999px;padding:6px 12px;box-shadow:inset 0 0 0 1px var(--line);color:var(--fg)}
+.skills .btn{margin-top:24px;height:40px;padding:0 18px;font-size:14px}
+
+/* ---------- contact ---------- */
+.contact .h2{max-width:16ch}
+.rows{margin-top:28px;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line)}
+.crow dt{font-size:13px;color:var(--faint)}
+.crow dd{margin:0;display:flex;align-items:center;gap:10px;min-width:0;font-size:16px}
+.crow dd a{text-decoration:none;overflow-wrap:anywhere}.crow dd a:hover{color:var(--blue)}
+.copy{font:500 12px var(--ui);height:28px;padding:0 10px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;font-size:13px;color:var(--faint)}
+.foot a{color:var(--muted);text-decoration:none}.foot a:hover{color:var(--blue)}
+
+/* ---------- right panel ---------- */
+.side{position:sticky;top:calc(var(--top) + env(safe-area-inset-top,0px));height:calc(100vh - var(--top) - env(safe-area-inset-top,0px));
+  background:var(--panel);border-left:1px solid var(--line);overflow:auto;display:flex;flex-direction:column}
+.side-head{display:none}
+.sec{padding:14px 12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.sec h2{font-size:12px;font-weight:600;margin:0 6px 8px}
+.row{display:flex;align-items:center;gap:8px;min-height:32px;padding:0 8px;border-radius:5px;color:var(--fg);text-decoration:none;font-size:13px}
+.row:hover{background:var(--panel-2)}
+.row.active{background:var(--blue-soft)}
+.row svg{flex:none;color:var(--muted)}.row.active svg{color:var(--blue)}
+.row .meta{margin-left:auto;color:var(--faint);font-size:12px}
+.row.child{padding-left:30px}
+.links{gap:8px}
+.links .btn{width:100%;height:36px}
+.btn[aria-disabled="true"]{opacity:.55;cursor:default}
+.side .note{font-size:12px;color:var(--faint);margin:2px 6px 0}
+
+
+.toast{position:fixed;left:50%;top:calc(var(--top) + 12px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--toast-bg);color:var(--toast-fg);
+  font-size:13px;padding:8px 12px;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:40;max-width:calc(100vw - 32px)}
+.scrim{display:none}
+/* ---------- design panel ---------- */
+.prop{display:flex;flex-direction:column;gap:8px;margin:2px 6px 12px}
+.prop:last-child{margin-bottom:2px}
+.prop-label{font-size:11px;color:var(--faint)}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--canvas);border-radius:6px;padding:2px;gap:2px}
+.seg button{font:500 12px var(--ui);color:var(--muted);background:transparent;border:0;border-radius:4px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.fills{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.fill{height:28px;border-radius:5px;border:0;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(127,127,127,.35)}
+.fill[aria-pressed="true"]{outline:2px solid var(--blue);outline-offset:2px}
+.fonts{display:flex;flex-direction:column;gap:2px}
+.font-opt{display:flex;align-items:center;justify-content:space-between;gap:8px;height:32px;padding:0 8px;border:0;border-radius:5px;background:transparent;color:var(--fg);font:400 13px var(--ui);cursor:pointer;text-align:left}
+.font-opt:hover{background:var(--panel-2)}
+.font-opt[aria-pressed="true"]{background:var(--blue-soft)}
+.font-opt .chk{color:var(--blue);visibility:hidden}
+.font-opt[aria-pressed="true"] .chk{visibility:visible}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- tablet: panel becomes a right drawer ---------- */
+@media (max-width:1100px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .layers-btn{display:inline-flex}
+  .side{position:fixed;top:0;right:0;bottom:0;height:auto;width:min(320px,88vw);z-index:35;transform:translateX(100%);transition:transform .25s ease;
+    padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px);box-shadow:-12px 0 40px rgba(0,0,0,.4)}
+  .side-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px 10px 18px;border-bottom:1px solid var(--line);font-weight:600}
+  body.panel-open .side{transform:none}
+  body.panel-open .scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:34}
+}
+/* ---------- phone: drawer slides up from the bottom ---------- */
+@media (max-width:720px){
+  .zoom,.top .resume-top{display:none}
+  .board{gap:72px}
+  .canvas{padding-block:40px 80px}
+  .side{top:auto;left:0;right:0;width:auto;max-height:82vh;border-left:0;border-top:1px solid var(--line);border-radius:14px 14px 0 0;
+    transform:translateY(100%);padding-left:env(safe-area-inset-left,0px)}
+  .content{flex-direction:column;align-items:flex-start;gap:16px;padding:22px}
+  .photo{width:112px;height:112px;border-radius:14px}
+  .name{font-size:32px}
+  .role{font-size:15px}
+  .cs-grid,.ui-grid{grid-template-columns:minmax(0,1fr)}
+  .card.wide .cover{aspect-ratio:16/10}
+  .about{grid-template-columns:minmax(0,1fr);gap:28px}
+}
+@media (max-width:720px){
+  .foot a{display:inline-flex;align-items:center;min-height:44px}
+  .row{min-height:44px}
+  .seg button{height:40px}
+  .copy{height:36px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .frame,.photo,.role,.hi,.side,.cover img{transition:none}
+  .caret{animation:none}
+}
+</style>
+<style>.seg a{font:500 12px var(--ui);color:var(--muted);text-decoration:none;border-radius:4px;height:28px;display:flex;align-items:center;justify-content:center}.seg a[aria-current="page"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.2)}.seg a:hover{color:var(--fg)}@media (max-width:720px){.seg a{height:40px}}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="../assets/fa.css">
+</head>
+<body>
+<header class="top">
+  <div class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="crumb"><span>فاطمه مداح</span><span>/</span><b>پورتفولیو</b></div>
+  <div class="grow"></div>
+  <span class="zoom">100%</span>
+  <a class="btn btn-blue resume-top" href="../Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">رزومه</a>
+  <button class="btn btn-line layers-btn" type="button" id="openPanel" aria-controls="panel" aria-expanded="false">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7 1.5L1.5 4.5 7 7.5l5.5-3z"/><path d="M1.5 7.5L7 10.5l5.5-3"/></svg>لایه‌ها</button>
+</header>
+
+<div class="shell">
+  <main class="canvas" id="top">
+    <div class="board">
+
+      <!-- Intro -->
+      <section class="frm intro" id="intro" aria-label="معرفی">
+        <div class="stage" id="stage">
+          <div class="flabel">معرفی</div>
+          <div class="frame" id="frame">
+            <div class="clip">
+              <div class="content" id="content">
+                <div class="photo" id="photo"><img src="../assets/photo/fatemeh.webp" alt="عکس فاطمه مداح" width="480" height="480"></div>
+                <div class="txt">
+                  <p class="hi" id="hi">سلام، من</p>
+                  <h1 class="name"><span class="sr">فاطمه مداح</span><span id="typed" aria-hidden="true">فاطمه مداح</span><span class="caret" aria-hidden="true"></span></h1>
+                  <p class="role" id="role">طراح UI/UX هستم. <span>محصولاتی روشن و کاربردی طراحی می‌کنم.</span></p>
+                </div>
+              </div>
+            </div>
+            <i class="handle h-tl"></i><i class="handle h-tr"></i><i class="handle h-bl"></i><i class="handle h-br"></i>
+            <div class="size" id="size" aria-hidden="true">600 × 210</div>
+          </div>
+          <div class="cursor is-hidden" id="cursor" aria-hidden="true">
+            <svg width="16" height="20" viewBox="0 0 16 20"><path d="M1 1l13 10.5-6 .7-3.3 6.3z" fill="#A259FF" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span>فاطمه</span>
+          </div>
+        </div>
+        <div class="intro-meta">
+          <span class="status"><i></i>آمادهٔ همکاری · دورکاری و حضوری</span>
+          <p>همیشه در حال یادگیری‌ام و هوش مصنوعی بخشی از ابزارهای روزانهٔ من است.</p>
+          <div class="ctas">
+            <a class="btn btn-blue" href="#work">دیدن نمونه‌کارها</a>
+            <a class="btn btn-line" href="../Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">رزومه</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case studies -->
+      <section class="frm" id="work" aria-labelledby="work-h">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>کیس‌استادی‌ها</div>
+        <div class="frm-body">
+          <p class="eyebrow">کیس‌استادی‌ها</p>
+          <h2 class="h2" id="work-h">کارهای منتخب</h2>
+          <div class="cs-grid">
+            <a class="card wide" id="cs-1" href="one-timeline-three-roles.html" data-page>
+              <div class="cover"><img width="1800" height="1317" src="../assets/cs/cs1-01-cover.webp" alt="یک تایم‌لاین، سه نقش: صفحهٔ تایم‌لاین پروژه" loading="lazy"></div>
+              <div>
+                <h3>یک تایم‌لاین، سه نقش</h3>
+                <p>بازطراحی تایم‌لاین مشترک پروژه از شش مرحله به دو مرحله، تا هر نقش ببیند پروژه کجاست و چه کاری منتظر اوست.</p>
+                <div class="tags"><span class="tag">معماری اطلاعات</span><span class="tag">یوزر فلو</span><span class="tag">بازطراحی</span><span class="tag">وب و موبایل</span></div>
+                <span class="go">خواندن کیس‌استادی ←</span>
+              </div>
+            </a>
+            <a class="card" id="cs-2" href="editing-where-you-see-it.html" data-page>
+              <div class="cover"><img width="1200" height="838" src="../assets/cs/cs3-01-cover.webp" alt="ویرایش همان‌جا که می‌بینی: صفحهٔ پروفایل بازطراحی‌شده" loading="lazy"></div>
+              <div>
+                <h3>ویرایش همان‌جا که می‌بینی</h3>
+                <p>بازطراحی پروفایل کاربر بعد از انتشار، تا کاربران بتوانند پروفایل را در یک جا ببینند و ویرایش کنند، بدون پاپ‌آپ اطلاعات اضافه کنند و بین نقش‌هایشان جابه‌جا شوند.</p>
+                <span class="go">خواندن ←</span>
+              </div>
+            </a>
+            <a class="card" id="cs-3" href="selling-empty-time.html" data-page>
+              <div class="cover"><img width="1200" height="932" src="../assets/cs/cs4-01-cover.webp" alt="فروش زمان خالی: داشبورد کسب‌وکار" loading="lazy"></div>
+              <div>
+                <h3>فروش زمان خالی</h3>
+                <p>طراحی اینکه کسب‌وکارهای محلی چطور زمان خالی ۴۸ ساعت آینده‌شان را در یک مارکت‌پلیس منتشر کنند و رزروها را مدیریت کنند؛ با شروع از این سؤال که این مدل اصلاً برای کدام کسب‌وکارها جواب می‌دهد.</p>
+                <span class="go">خواندن ←</span>
+              </div>
+            </a>
+          </div>
+          <p class="nda">نام پروژه‌ها تغییر کرده است. جزئیات در حدی که قرارداد عدم افشای هر پروژه اجازه می‌دهد آمده است.</p>
+        </div>
+      </section>
+
+      <!-- UI work -->
+      <section class="frm" id="ui-work" aria-labelledby="ui-h">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>کارهای UI</div>
+        <div class="frm-body">
+          <p class="eyebrow">کارهای UI</p>
+          <h2 class="h2" id="ui-h">تمرین‌های کوچک</h2>
+          <p class="lead">کانسپت‌هایی که برای تمرین مهارت بصری و امتحان الگوهای تازه می‌سازم و منتشر نشده‌اند.</p>
+          <div class="ui-grid">
+            <a class="ui-card" id="ui-1" href="roshan-dental.html" data-page>
+              <div class="cover" style="background:#E4EEEB"><img width="900" height="535" src="../assets/ui/roshan-cover.webp" alt="کانسپت لندینگ پیج کلینیک دندان‌پزشکی روشن" loading="lazy"></div>
+              <div><h3>کلینیک دندان‌پزشکی روشن</h3><p>لندینگ پیجی آرام برای یک کلینیک دندان‌پزشکی خانوادگی در تهران که رزرو نوبت در آن در اولویت است؛ طراحی‌شده به فارسی و راست‌به‌چپ.</p></div>
+            </a>
+            <a class="ui-card" id="ui-2" href="split-cost.html" data-page>
+              <div class="cover" style="background:#F5F5F7"><img width="900" height="675" src="../assets/ui/split-cover.webp" alt="صفحه‌های اپلیکیشن Split cost" loading="lazy" style="object-position:center"></div>
+              <div><h3>Split cost</h3><p>اپلیکیشن موبایل برای تقسیم هزینه‌ها در یک گروه.</p></div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="frm" id="about" aria-labelledby="about-h">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>درباره من</div>
+        <div class="frm-body about">
+          <div>
+            <p class="eyebrow">درباره من</p>
+            <h2 class="h2" id="about-h">سلام، من فاطمه هستم.</h2>
+            <p>طراح UI/UX ساکن مشهد هستم، با پیش‌زمینهٔ فناوری اطلاعات و پایان‌نامهٔ کارشناسی ارشد دربارهٔ تحلیل احساسات در متن فارسی. محصولاتی طراحی می‌کنم که چند نقش مختلف باید در آن‌ها کنار هم کار کنند، و دارم به سمت پروداکت دیزاین رشد می‌کنم.</p>
+          </div>
+          <div class="skills">
+            <h3>کارهایی که انجام می‌دهم</h3>
+            <div class="chips">
+              <span class="chip">تحلیل رقبا</span><span class="chip">یوزر فلو</span><span class="chip">معماری اطلاعات</span>
+              <span class="chip">وایرفریم</span><span class="chip">پروتوتایپ</span><span class="chip">طراحی UI</span>
+              <span class="chip">دیزاین سیستم</span><span class="chip">هندآف به توسعه‌دهنده</span>
+            </div>
+            <a class="btn btn-blue" href="../Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">دانلود رزومه ↓</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="frm contact" id="contact" aria-labelledby="contact-h">
+        <div class="frm-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>تماس</div>
+        <div class="frm-body">
+          <p class="eyebrow">تماس</p>
+          <h2 class="h2" id="contact-h">دنبال طراح UI/UX هستید؟ بیایید صحبت کنیم.</h2>
+          <dl class="rows">
+            <div class="crow"><dt>ایمیل</dt><dd><a href="mailto:FatemehSadatMaddah@Gmail.com" id="email">FatemehSadatMaddah@Gmail.com</a><button class="btn btn-line copy" type="button" id="copyEmail">کپی</button></dd></div>
+            <div class="crow"><dt>لینکدین</dt><dd><a href="https://www.linkedin.com/in/fatemeh-maddah/" target="_blank" rel="noopener">linkedin.com/in/fatemeh-maddah ↗</a></dd></div>
+            <div class="crow"><dt>تلگرام</dt><dd><a href="https://t.me/fatemee_maddah" target="_blank" rel="noopener">@fatemee_maddah ↗</a></dd></div>
+            <div class="crow"><dt>فیگما</dt><dd><a href="https://www.figma.com/design/IYb5JQwZ62sMDHg5AlnyRL?node-id=764-17307" target="_blank" rel="noopener">باز کردن در فیگما ↗</a></dd></div>
+          </dl>
+          <div class="foot"><span>© ۲۰۲۶ فاطمه مداح</span><a href="#top">بازگشت به بالا ↑</a></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <aside class="side" id="panel" aria-label="لایه‌ها">
+    <div class="side-head">لایه‌ها<button class="btn btn-line" type="button" id="closePanel" aria-label="بستن لایه‌ها">✕</button></div>
+    <nav class="sec" aria-label="صفحه‌ها">
+      <h2>صفحه‌ها</h2>
+      <a class="row active" href="#intro" data-spy="intro"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>معرفی</a>
+      <a class="row" href="#work" data-spy="work"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>کیس‌استادی‌ها<span class="meta">3</span></a>
+      <a class="row child" href="one-timeline-three-roles.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>یک تایم‌لاین، سه نقش</a>
+      <a class="row child" href="editing-where-you-see-it.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>ویرایش همان‌جا که می‌بینی</a>
+      <a class="row child" href="selling-empty-time.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>فروش زمان خالی</a>
+      <a class="row" href="#ui-work" data-spy="ui-work"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>کارهای UI<span class="meta">2</span></a>
+      <a class="row child" href="roshan-dental.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>کلینیک دندان‌پزشکی روشن</a>
+      <a class="row child" href="split-cost.html" data-page><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>Split cost</a>
+      <a class="row" href="#about" data-spy="about"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>درباره من</a>
+      <a class="row" href="#contact" data-spy="contact"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>تماس</a>
+    </nav>
+    <div class="sec" aria-label="زبان">
+      <h2>زبان</h2>
+      <div class="prop"><div class="seg" role="group" aria-label="زبان"><a href="../index.html" lang="en" hreflang="en">English</a><a href="index.html" lang="fa" hreflang="fa" aria-current="page">فارسی</a></div></div>
+    </div>
+    <div class="sec" aria-label="طراحی">
+      <h2>طراحی</h2>
+      <div class="prop"><span class="prop-label" id="lbl-theme">تم</span>
+        <div class="seg" role="group" aria-labelledby="lbl-theme">
+          <button type="button" data-skin="dark" aria-pressed="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M10 7.5A4.5 4.5 0 014.5 2a4.5 4.5 0 105.5 5.5z" fill="currentColor"/></svg>تیره</button>
+          <button type="button" data-skin="light" aria-pressed="false"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="6" r="2.4"/><path d="M6 .8v1.4M6 9.8v1.4M.8 6h1.4M9.8 6h1.4M2.3 2.3l1 1M8.7 8.7l1 1M2.3 9.7l1-1M8.7 3.3l1-1"/></svg>روشن</button>
+        </div></div>
+      <div class="prop"><span class="prop-label" id="lbl-fill">رنگ پس‌زمینهٔ عکس</span>
+        <div class="fills" role="group" aria-labelledby="lbl-fill">
+          <button class="fill" type="button" data-fill="deep" aria-pressed="true" aria-label="آبی تیره" title="آبی تیره" style="background:linear-gradient(180deg,#1C3A63,#0E1F38)"></button>
+          <button class="fill" type="button" data-fill="grey" aria-pressed="false" aria-label="خاکستری" title="خاکستری" style="background:#3A3F47"></button>
+          <button class="fill" type="button" data-fill="blue" aria-pressed="false" aria-label="آبی فیگما" title="آبی فیگما" style="background:#0D99FF"></button>
+          <button class="fill" type="button" data-fill="soft" aria-pressed="false" aria-label="آبی‌خاکستری روشن" title="آبی‌خاکستری روشن" style="background:#C6D0DE"></button>
+          <button class="fill" type="button" data-fill="sand" aria-pressed="false" aria-label="شنی" title="شنی" style="background:#E7DCCB"></button>
+        </div></div>
+      <div class="prop"><span class="prop-label" id="lbl-font">فونت</span>
+        <div class="fonts" role="group" aria-labelledby="lbl-font">
+          <button class="font-opt" type="button" data-font="inter" aria-pressed="true">وزیرمتن<span class="chk">✓</span></button>
+          <button class="font-opt" type="button" data-font="serif" aria-pressed="false">نوتو نسخ<span class="chk">✓</span></button>
+          <button class="font-opt" type="button" data-font="syne" aria-pressed="false">لاله‌زار<span class="chk">✓</span></button>
+        </div></div>
+    </div>
+    <div class="sec links">
+      <h2>لینک‌ها</h2>
+      <a class="btn btn-blue" href="../Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">دانلود رزومه</a>
+      <a class="btn btn-line" href="https://www.figma.com/design/IYb5JQwZ62sMDHg5AlnyRL?node-id=764-17307" target="_blank" rel="noopener">فیگما ↗</a>
+      <a class="btn btn-line" href="https://www.linkedin.com/in/fatemeh-maddah/" target="_blank" rel="noopener">لینکدین ↗</a>
+    </div>
+  </aside>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+  /* ---- intro frame: close, drag open, type the name, show photo, repeat ---- */
+  const frame=$('frame'),content=$('content'),typed=$('typed'),photo=$('photo'),role=$('role'),hi=$('hi'),size=$('size'),cursor=$('cursor'),stage=$('stage');
+  const NAME=document.documentElement.lang==='fa'?'فاطمه مداح':'Fatemeh Maddah'; let W=600,H=210,raf=0,running=false;
+  function measure(){
+    const t=typed.textContent; typed.textContent=NAME;
+    const hid=[photo,role,hi].map(e=>e.classList.contains('is-hidden'));
+    [photo,role,hi].forEach(e=>e.classList.remove('is-hidden'));
+    content.style.width='auto';
+    const maxW=Math.min(640,stage.closest('.board').clientWidth-8);
+    content.style.width=Math.min(content.scrollWidth,maxW)+'px';
+    W=Math.round(content.offsetWidth); H=Math.round(content.offsetHeight);
+    typed.textContent=t; [photo,role,hi].forEach((e,i)=>hid[i]&&e.classList.add('is-hidden'));
+  }
+  const setSize=(w,h)=>{frame.style.setProperty('--w',w+'px');frame.style.setProperty('--h',h+'px')};
+  function track(){const w=Math.round(frame.offsetWidth),h=Math.round(frame.offsetHeight);size.textContent=w+' × '+h;
+    cursor.style.transform='translate('+(w-2)+'px,'+(h-2)+'px)';raf=requestAnimationFrame(track)}
+  measure(); setSize(W,H); size.textContent=W+' × '+H;
+  async function loop(){
+    running=true; await wait(2200);
+    while(true){
+      [photo,role,hi].forEach(e=>e.classList.add('is-hidden')); await wait(350);
+      typed.textContent=''; cursor.classList.remove('is-hidden'); track();
+      setSize(0,0); await wait(1000);
+      setSize(Math.round(W*.62),Math.round(H*.6)); await wait(950);
+      setSize(W,H); await wait(950);
+      cancelAnimationFrame(raf); cursor.classList.add('is-hidden'); size.textContent=W+' × '+H;
+      hi.classList.remove('is-hidden'); await wait(250);
+      for(let i=1;i<=NAME.length;i++){typed.textContent=NAME.slice(0,i);await wait(70+Math.random()*60)}
+      await wait(250); photo.classList.remove('is-hidden'); await wait(350); role.classList.remove('is-hidden');
+      await wait(5000);
+    }
+  }
+  if(!reduce) loop();
+  let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{measure();setSize(W,H);size.textContent=W+' × '+H},200)});
+
+  /* ---- layers panel: scroll-spy + drawer on smaller screens ---- */
+  const rows=[...document.querySelectorAll('[data-spy]')];
+  const frames=rows.map(r=>$(r.dataset.spy));
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+    rows.forEach(r=>r.classList.toggle('active',r.dataset.spy===e.target.id));
+    frames.forEach(f=>f.classList.toggle('is-current',f===e.target));}})},{rootMargin:'-45% 0px -50% 0px'});
+  frames.forEach(f=>io.observe(f));
+  const open=$('openPanel');
+  const setPanel=on=>{document.body.classList.toggle('panel-open',on);open.setAttribute('aria-expanded',on)};
+  open.addEventListener('click',()=>setPanel(true));
+  $('closePanel').addEventListener('click',()=>setPanel(false));
+  $('scrim').addEventListener('click',()=>setPanel(false));
+  $('panel').addEventListener('click',e=>{if(e.target.closest('a'))setPanel(false)});
+  addEventListener('keydown',e=>{if(e.key==='Escape')setPanel(false)});
+
+  /* ---- design panel: theme, photo fill, heading font (remembered per visitor) ---- */
+  const root=document.documentElement;
+  const FILLS={deep:'linear-gradient(180deg,#1C3A63,#0E1F38)',grey:'#3A3F47',blue:'#0D99FF',soft:'#C6D0DE',sand:'#E7DCCB'};
+  const FA=root.lang==='fa';
+  const FONT_CSS=FA?{serif:'https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@600;700&display=swap',syne:'https://fonts.googleapis.com/css2?family=Lalezar&display=swap'}
+                   :{serif:'https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap',syne:'https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap'};
+  const FONT_NAME=FA?{serif:'Noto Naskh Arabic',syne:'Lalezar'}:{serif:'Instrument Serif',syne:'Syne'};
+  const store={get:k=>{try{return localStorage.getItem('fm-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('fm-'+k,v)}catch(e){}}};
+  const press=(sel,attr,val)=>document.querySelectorAll(sel).forEach(b=>b.setAttribute('aria-pressed',b.dataset[attr]===val));
+  function setSkin(v){root.dataset.skin=v;press('[data-skin]','skin',v);store.set('skin',v)}
+  function setFill(v){if(!FILLS[v])return;root.style.setProperty('--photo-bg',FILLS[v]);press('[data-fill]','fill',v);store.set('fill',v)}
+  async function setFont(v){
+    press('.font-opt','font',v);store.set('font',v);
+    if(FONT_CSS[v]&&!document.querySelector('link[data-f="'+v+'"]')){
+      const l=document.createElement('link');l.rel='stylesheet';l.href=FONT_CSS[v];l.dataset.f=v;document.head.appendChild(l);
+    }
+    if(FONT_NAME[v]){try{await document.fonts.load('400 44px "'+FONT_NAME[v]+'"')}catch(e){}}
+    if(v==='inter')delete root.dataset.font;else root.dataset.font=v;
+    measure();setSize(W,H);size.textContent=W+' × '+H;
+  }
+  document.querySelectorAll('[data-skin]').forEach(b=>b.addEventListener('click',()=>setSkin(b.dataset.skin)));
+  document.querySelectorAll('[data-fill]').forEach(b=>b.addEventListener('click',()=>setFill(b.dataset.fill)));
+  document.querySelectorAll('.font-opt').forEach(b=>b.addEventListener('click',()=>setFont(b.dataset.font)));
+  if(store.get('skin')==='light')setSkin('light');
+  if(store.get('fill'))setFill(store.get('fill'));
+  if(store.get('font')&&store.get('font')!=='inter')setFont(store.get('font'));
+
+  /* ---- copy email ---- */
+  const toast=$('toast'); let tt;
+  const say=m=>{toast.textContent=m;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,2400)};
+  $('copyEmail').addEventListener('click',()=>{
+    const v=$('email').textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>say(document.documentElement.lang==='fa'?'ایمیل کپی شد':'Email copied'),()=>{
+      const r=document.createRange();r.selectNodeContents($('email'));const s=getSelection();s.removeAllRanges();s.addRange(r);say(document.documentElement.lang==='fa'?'ایمیل انتخاب شد؛ Ctrl+C را بزنید':'Email selected, press Ctrl+C');});
+  });
+
+  /* ---- preview only: the sandbox cannot open the PDF ---- */
+  if(!/github\.io$/.test(location.hostname)){
+    document.querySelectorAll('a[href$=".pdf"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();say(document.documentElement.lang==='fa'?'فایل PDF رزومه روی سایت اصلی باز می‌شود.':'Opens the resume PDF on the live site.')}));
+  }
+})();
+</script>
+</body>
+</html>
