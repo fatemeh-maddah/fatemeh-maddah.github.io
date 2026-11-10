@@ -11,7 +11,7 @@ body{line-height:1.7}
 .prose p,.prose ul,.prose ol{line-height:1.95}
 .summary,.lead,.about p{line-height:1.85}
 
-/* keep the Layers panel on the right, as in the English site */
+/* keep the Layers panel on the same side as the English site */
 .shell{direction:ltr}
 .shell>*{direction:rtl}
 

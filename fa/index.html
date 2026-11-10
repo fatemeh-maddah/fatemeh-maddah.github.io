@@ -236,6 +236,20 @@ a{color:inherit}
   .frame,.photo,.role,.hi,.side,.cover img{transition:none}
   .caret{animation:none}
 }
+
+/* ---------- panel on the left ---------- */
+.shell{grid-template-columns:var(--side) minmax(0,1fr)}
+.shell>.side{order:-1;border-left:0;border-right:1px solid var(--line)}
+@media (max-width:1100px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{left:0;right:auto;transform:translateX(-100%);box-shadow:12px 0 40px rgba(0,0,0,.4);
+    padding-right:0;padding-left:env(safe-area-inset-left,0px)}
+}
+@media (max-width:720px){
+  .side{right:0;border-right:0;transform:translateY(100%)}
+}
+
+@media (max-width:1100px){body.panel-open .side{transform:none}}
 </style>
 <style>.seg a{font:500 12px var(--ui);color:var(--muted);text-decoration:none;border-radius:4px;height:28px;display:flex;align-items:center;justify-content:center}.seg a[aria-current="page"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.2)}.seg a:hover{color:var(--fg)}@media (max-width:720px){.seg a{height:40px}}</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap">
@@ -248,7 +262,7 @@ a{color:inherit}
   <div class="grow"></div>
   <a class="btn btn-blue resume-top" href="../Fatemeh-Maddah-Resume.pdf" target="_blank" rel="noopener">رزومه</a>
   <button class="btn btn-line layers-btn" type="button" id="openPanel" aria-controls="panel" aria-expanded="false">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7 1.5L1.5 4.5 7 7.5l5.5-3z"/><path d="M1.5 7.5L7 10.5l5.5-3"/></svg>لایه‌ها</button>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.5 1.5h4.5l2.5 2.5v8.5h-7z"/><path d="M8 1.5V4h2.5M5 7.5h4M5 9.5h4"/></svg>صفحه‌ها</button>
 </header>
 
 <div class="shell">
@@ -296,7 +310,7 @@ a{color:inherit}
           <h2 class="h2" id="work-h">کارهای منتخب</h2>
           <div class="cs-grid">
             <a class="card wide" id="cs-1" href="one-timeline-three-roles.html" data-page>
-              <div class="cover"><img width="1800" height="1317" src="../assets/cs/cs1-01-cover.webp" alt="یک تایم‌لاین، سه نقش: صفحهٔ تایم‌لاین پروژه" loading="lazy"></div>
+              <div class="cover"><img width="1600" height="1000" src="../assets/cs/cs1-01-cover.webp" alt="یک تایم‌لاین، سه نقش: صفحهٔ تایم‌لاین پروژه" loading="lazy"></div>
               <div>
                 <h3>یک تایم‌لاین، سه نقش</h3>
                 <p>بازطراحی تایم‌لاین مشترک پروژه از شش مرحله به دو مرحله، تا هر نقش ببیند پروژه کجاست و چه کاری منتظر اوست.</p>
@@ -305,7 +319,7 @@ a{color:inherit}
               </div>
             </a>
             <a class="card" id="cs-2" href="editing-where-you-see-it.html" data-page>
-              <div class="cover"><img width="1200" height="838" src="../assets/cs/cs3-01-cover.webp" alt="ویرایش همان‌جا که می‌بینی: صفحهٔ پروفایل بازطراحی‌شده" loading="lazy"></div>
+              <div class="cover"><img width="1600" height="1000" src="../assets/cs/cs3-01-cover.webp" alt="ویرایش همان‌جا که می‌بینی: صفحهٔ پروفایل بازطراحی‌شده" loading="lazy"></div>
               <div>
                 <h3>ویرایش همان‌جا که می‌بینی</h3>
                 <p>بازطراحی پروفایل کاربر بعد از انتشار، تا کاربران بتوانند پروفایل را در یک جا ببینند و ویرایش کنند، بدون پاپ‌آپ اطلاعات اضافه کنند و بین نقش‌هایشان جابه‌جا شوند.</p>
@@ -313,7 +327,7 @@ a{color:inherit}
               </div>
             </a>
             <a class="card" id="cs-3" href="selling-empty-time.html" data-page>
-              <div class="cover"><img width="1200" height="932" src="../assets/cs/cs4-01-cover.webp" alt="فروش زمان خالی: داشبورد کسب‌وکار" loading="lazy"></div>
+              <div class="cover"><img width="1600" height="1000" src="../assets/cs/cs4-01-cover.webp" alt="فروش زمان خالی: داشبورد کسب‌وکار" loading="lazy"></div>
               <div>
                 <h3>فروش زمان خالی</h3>
                 <p>طراحی اینکه کسب‌وکارهای محلی چطور زمان خالی ۴۸ ساعت آینده‌شان را در یک مارکت‌پلیس منتشر کنند و رزروها را مدیریت کنند؛ با شروع از این سؤال که این مدل اصلاً برای کدام کسب‌وکارها جواب می‌دهد.</p>
@@ -385,8 +399,8 @@ a{color:inherit}
     </div>
   </main>
 
-  <aside class="side" id="panel" aria-label="لایه‌ها">
-    <div class="side-head">لایه‌ها<button class="btn btn-line" type="button" id="closePanel" aria-label="بستن لایه‌ها">✕</button></div>
+  <aside class="side" id="panel" aria-label="صفحه‌ها">
+    <div class="side-head">صفحه‌ها<button class="btn btn-line" type="button" id="closePanel" aria-label="بستن صفحه‌ها">✕</button></div>
     <nav class="sec" aria-label="صفحه‌ها">
       <h2>صفحه‌ها</h2>
       <a class="row active" href="#intro" data-spy="intro"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 1v10M9 1v10M1 3h10M1 9h10"/></svg>معرفی</a>
